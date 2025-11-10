@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>9</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="../AndroidBindgen.Standalone/bin/Release/net8.0/out/**/*.cs" LinkBase="Generated"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AndroidBindgen.Runtime\AndroidBindgen.Runtime.csproj" Private="false"/>
+      <ProjectReference Include="..\UnityCsReference\Projects\CSharp\UnityEngine.csproj" Private="false"/>
+    </ItemGroup>
+
+</Project>

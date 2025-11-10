@@ -1,0 +1,16 @@
+{
+    "name": "Android",
+    "rootNamespace": "",
+    "references": [
+        "GUID:279c2e19bba7d40e584c2fd198c61765"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

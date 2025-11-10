@@ -1,0 +1,8 @@
+<Project>
+
+    <PropertyGroup>
+        <DirectoryBuildPropsImported>true</DirectoryBuildPropsImported>
+        <DotNetTargetFrameworkVersion>8.0</DotNetTargetFrameworkVersion>
+        <DotNetTargetFramework>net$(DotNetTargetFrameworkVersion)</DotNetTargetFramework>
+    </PropertyGroup>
+</Project>

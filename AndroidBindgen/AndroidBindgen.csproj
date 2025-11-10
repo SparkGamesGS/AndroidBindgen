@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>11</LangVersion>
+        <OutputPath>../AndroidBindgen.Unity/Packages/jp.co.cyberagent.android-bindgen/</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cecla\Cecla.csproj" Private="true"/>
+        <ProjectReference Include="..\Javadoc\Javadoc.csproj" Private="true"/>
+    </ItemGroup>
+</Project>

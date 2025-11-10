@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/jp.co.cyberagent.android-bindgen/AndroidBindgen.Editors/ProfileWindow.uss?fileID=7433441132597879392&amp;guid=4e71a84e2134b47ef879b5b090908e9b&amp;type=3#ProfileWindow" />
+    <uie:Toolbar>
+        <uie:ToolbarButton text="Generate" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button-generate" style="flex-shrink: 0;" />
+        <uie:ToolbarButton text="Select" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button-select" style="flex-shrink: 0;" />
+        <ui:VisualElement style="flex-grow: 1; flex-shrink: 1;" />
+        <uie:ToolbarToggle value="false" text="Show Deprecated Items" name="toggle-deprecated" style="flex-grow: 0; flex-shrink: 0;" />
+        <uie:ToolbarSearchField name="searchfield-main" style="flex-shrink: 1;" />
+    </uie:Toolbar>
+    <ui:MultiColumnTreeView name="treeview-main" sorting-enabled="true" show-alternating-row-backgrounds="All">
+        <ui:Columns>
+            <ui:Column name="treeview-column-name" title="Name" width="300" />
+            <ui:Column name="treeview-column-kind" title="Kind" width="100" />
+            <ui:Column name="treeview-column-type" title="Type" width="200" />
+            <ui:Column name="treeview-column-parameters" title="Parameters" width="200" />
+        </ui:Columns>
+    </ui:MultiColumnTreeView>
+</ui:UXML>

@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.134">
+
+    <PropertyGroup>
+        <TargetFramework>$(DotNetTargetFramework)</TargetFramework>
+    </PropertyGroup>
+
+    <Import Project="..\java-interop\Directory.Build.props" />
+    <Import Project="..\java-interop\TargetFrameworkDependentValues.props" />
+    
+    <PropertyGroup>
+        <!-- output to default directory -->
+        <_OutputPath />
+        <OriginalBasePath>..\java-interop\tools\java-source-utils</OriginalBasePath>
+    </PropertyGroup> 
+
+    <ItemGroup>
+        <CompileJava Include="$(OriginalBasePath)\src\main\**\*.java;JniPackagesInfoFactory.java" Exclude="$(OriginalBasePath)\src\main\java\com\microsoft\android\JniPackagesInfoFactory.java"/>
+    </ItemGroup>
+
+    <Target Name="JavaBuild"
+            Inputs="$(MSBuildThisFile);$(OriginalBasePath)\build.gradle;@(CompileJava)"
+            Outputs="$(OriginalBasePath)\build\libs\java-source-utils.jar">
+        <!-- delete output to force update timestamp -->
+        <Delete Files="$(OriginalBasePath)\build\libs\java-source-utils.jar" />
+        <!-- patch JniPackagesInfoFactory.java -->
+        <Copy SourceFiles="JniPackagesInfoFactory.java"
+              DestinationFolder="$(OriginalBasePath)\src\main\java\com\microsoft\android" />
+        <Exec
+                Command="&quot;$(GradleWPath)&quot; -d $(GradleArgs) -PjavaSourceVer=$(JavacSourceVersion) -PjavaTargetVer=$(JavacTargetVersion) jar"
+                EnvironmentVariables="JAVA_HOME=$(JavaSdkDirectory);APP_HOME=$(GradleHome)"
+                WorkingDirectory="$(OriginalBasePath)"
+                IgnoreStandardErrorWarningFormat="true"
+        />
+    </Target>
+
+    <Target Name="JavaBuildAssign"
+            BeforeTargets="AssignTargetPaths"
+            DependsOnTargets="JavaBuild">
+        <ItemGroup>
+            <Content Include="$(OriginalBasePath)\build\libs\java-source-utils.jar">
+                <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            </Content>
+        </ItemGroup>
+    </Target>
+
+</Project>

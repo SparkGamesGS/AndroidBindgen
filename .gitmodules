@@ -1,0 +1,6 @@
+[submodule "UnityCsReference"]
+	path = UnityCsReference
+	url = https://github.com/Unity-Technologies/UnityCsReference
+[submodule "java-interop"]
+	path = java-interop
+	url = https://github.com/dotnet/java-interop.git

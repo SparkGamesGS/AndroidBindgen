@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/jp.co.cyberagent.android-bindgen/AndroidBindgen.Editors/ProfileWindow.uss?fileID=7433441132597879392&amp;guid=4e71a84e2134b47ef879b5b090908e9b&amp;type=3#ProfileWindow" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: flex-start; align-items: stretch; align-self: flex-start;">
+        <ui:Toggle text="AAAAA" name="Toggle" style="align-items: center; align-self: auto; flex-grow: 0; flex-shrink: 1;" />
+        <ui:VisualElement style="flex-grow: 1; flex-shrink: 1;" />
+    </ui:VisualElement>
+</ui:UXML>
