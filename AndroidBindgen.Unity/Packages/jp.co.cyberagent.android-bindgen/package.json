@@ -1,6 +1,6 @@
 {
   "name": "jp.co.cyberagent.android-bindgen",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "displayName": "Android Bindgen",
   "description": "Performant binding generator to interop with Android Java / Kotlin code",
   "unity": "2022.3",
