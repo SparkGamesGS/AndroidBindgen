@@ -434,13 +434,13 @@ public class Generator : IGenerator
 
                 sourceBuilder.Append(
 /* lang=c# */
-                    $"{returnType.GetCSharpExpression(true)} {method.Name}({string.Join(", ", tempParameters.Select(p => $"{p.CSharpExpression} {p.Name}"))})");
+                    $"{returnType.GetCSharpExpression(true)} {method.Name}({string.Join(", ", tempParameters.Select(p => $"{p.Type.GetCSharpExpression(true)} {p.Name}"))})");
 
                 sourceBuilder.AppendLine(hasDefault
                     /* lang=c# */
                     ? $$"""
                             {
-                                throw new global::AndroidBindgen.InvocationErrorException("No such proxy method: {{method.Name}}({{string.Join(", ", tempParameters.Select(p => $"{p.CSharpExpression} {p.Name}"))}})");
+                                throw new global::AndroidBindgen.InvocationErrorException("No such proxy method: {{method.Name}}({{string.Join(", ", tempParameters.Select(p => $"{p.Type.GetCSharpExpression(true)} {p.Name}"))}})");
                             }
                         """
                     : ";");
