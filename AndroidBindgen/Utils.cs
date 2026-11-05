@@ -9,6 +9,15 @@ namespace AndroidBindgen;
 
 internal static class Utils
 {
+    /// <summary>
+    ///     The fully qualified C# type name of a Java class, rooted at <c>global::</c> so a binding namespace such as
+    ///     <c>com.android</c> cannot shadow <c>android</c> inside another <c>com.*</c> namespace.
+    /// </summary>
+    public static string ToGlobalTypeName(this string javaClassName)
+    {
+        return $"global::{javaClassName.Replace('/', '.').Replace('$', '.').ToSafeIdentifier()}";
+    }
+
     public static string ToSafeIdentifier(this string source)
     {
         var cursor = 0;

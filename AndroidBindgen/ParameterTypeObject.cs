@@ -10,7 +10,7 @@ internal readonly struct ParameterTypeObject : IParameterType
 
     public ParameterTypeObject(string className)
     {
-        _csharpExpression = className.Replace("/", ".").Replace("$", ".").ToSafeIdentifier();
+        _csharpExpression = className.ToGlobalTypeName();
         ClassName = className;
     }
 
@@ -70,12 +70,12 @@ internal readonly struct ParameterTypeObject : IParameterType
     public string GetProxyParameterMatcher(string classNameSource, string classPointerSource, bool isBoxed)
     {
         return
-            $"(nint){classPointerSource} == 0 || IsAssignableFrom(global::{GetCSharpExpression(false)}.__ABG__Class, {classPointerSource})";
+            $"(nint){classPointerSource} == 0 || IsAssignableFrom({GetCSharpExpression(false)}.__ABG__Class, {classPointerSource})";
     }
 
     public string GetProxyUnboxer(MarshalingContext context, string source)
     {
-        return $"global::{GetCSharpExpression(false)}.UnsafeFromRawObjectAndDeleteLocalRef({source})";
+        return $"{GetCSharpExpression(false)}.UnsafeFromRawObjectAndDeleteLocalRef({source})";
     }
 
     public string GetProxyBoxer(string source)

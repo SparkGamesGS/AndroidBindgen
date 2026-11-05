@@ -434,13 +434,13 @@ public class Generator : IGenerator
 
                 sourceBuilder.Append(
 /* lang=c# */
-                    $"{returnType.GetCSharpExpression(true)} {method.Name}({string.Join(", ", tempParameters.Select(p => $"{p.CSharpExpression} {p.Name}"))})");
+                    $"{returnType.GetCSharpExpression(true)} {method.Name}({string.Join(", ", tempParameters.Select(p => $"{p.Type.GetCSharpExpression(true)} {p.Name}"))})");
 
                 sourceBuilder.AppendLine(hasDefault
                     /* lang=c# */
                     ? $$"""
                             {
-                                throw new global::AndroidBindgen.InvocationErrorException("No such proxy method: {{method.Name}}({{string.Join(", ", tempParameters.Select(p => $"{p.CSharpExpression} {p.Name}"))}})");
+                                throw new global::AndroidBindgen.InvocationErrorException("No such proxy method: {{method.Name}}({{string.Join(", ", tempParameters.Select(p => $"{p.Type.GetCSharpExpression(true)} {p.Name}"))}})");
                             }
                         """
                     : ";");
@@ -663,7 +663,7 @@ public class Generator : IGenerator
         sourceBuilder.AppendLine($"    private static nint {methodPointerName};");
 
         classPointerNameStr =
-            $"{typeFullName.ToString().Replace('/', '.').Replace('$', '.').ToSafeIdentifier()}.{classPointerNameStr}";
+            $"{typeFullName.ToString().ToGlobalTypeName()}.{classPointerNameStr}";
 
         var isStatic = field.AccessFlags.HasFlag(AccessFlags.Static);
 
@@ -681,7 +681,7 @@ public class Generator : IGenerator
             sourceBuilder.Append("(");
             if (!isStatic)
                 sourceBuilder.Append(
-                    $"this {typeFullName.ToString().Replace('/', '.').Replace('$', '.').ToSafeIdentifier()} @this");
+                    $"this {typeFullName.ToString().ToGlobalTypeName()} @this");
 
             sourceBuilder.AppendLine(")");
 
@@ -706,7 +706,7 @@ public class Generator : IGenerator
             if (!isStatic)
             {
                 sourceBuilder.Append(
-                    $"this {typeFullName.ToString().Replace('/', '.').Replace('$', '.').ToSafeIdentifier()} @this");
+                    $"this {typeFullName.ToString().ToGlobalTypeName()} @this");
                 sourceBuilder.Append(", ");
             }
 
@@ -854,7 +854,7 @@ public class Generator : IGenerator
         var methodPointerName = $"p_{classPointerNameStr}_{safeName}_{count}";
 
         classPointerNameStr =
-            $"{typeFullName.ToString().Replace('/', '.').Replace('$', '.').ToSafeIdentifier()}.{classPointerNameStr}";
+            $"{typeFullName.ToString().ToGlobalTypeName()}.{classPointerNameStr}";
 
         sourceBuilder.AppendLine(
 /* source=c#*/$$"""
@@ -899,7 +899,7 @@ public class Generator : IGenerator
             if (!isStatic && !isConstructor)
             {
                 sourceBuilder.Append(
-                    $"this {typeFullName.ToString().Replace('/', '.').Replace('$', '.').ToSafeIdentifier()} @this");
+                    $"this {typeFullName.ToString().ToGlobalTypeName()} @this");
                 isFirst = false;
             }
 
